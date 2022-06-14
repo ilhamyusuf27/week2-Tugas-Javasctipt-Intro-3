@@ -11,13 +11,11 @@ const getMonth = (callback) => {
 };
 
 const printData = (error, data) => {
-	setTimeout(() => {
-		if (error === null) {
-			data.map((element, indeks) => console.log(`Bulan ke-${indeks + 1} ${element}`));
-		} else {
-			console.log(error.message);
-		}
-	}, 100);
+	if (error === null) {
+		data.map((element, indeks) => console.log(`Bulan ke-${indeks + 1} ${element}`));
+	} else {
+		console.log(error.message);
+	}
 };
 
 getMonth(printData);

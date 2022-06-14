@@ -21,7 +21,7 @@ getData('https://jsonplaceholder.typicode.com/users')
 		response.map((data) => console.log(data.name));
 	})
 	.catch((err) => {
-		const cekError = err?.response?.status === 404 || err?.errno === -3004;
+		const cekError = err?.response?.status === 404;
 		if (cekError) {
 			console.log('Invalid URL');
 		} else {

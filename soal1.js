@@ -16,7 +16,7 @@ const hariKerja = (day) => {
 					reject(new Error('Input must be a string'));
 				}
 			} catch {
-				reject(new Error('Error on your code!'));
+				reject(new Error('Program Error!'));
 			}
 			/*
 			Try menampung kode program, apabila terjadi error di try maka error tersebut akan ditangkap catch yang berisi reject error
@@ -25,7 +25,7 @@ const hariKerja = (day) => {
 	});
 };
 
-hariKerja('Senin')
+hariKerja('senin')
 	.then((response) => console.log(`Hari ini hari ${response}, kamu harus bekerja`))
 	.catch((err) => console.log(err.message));
 /* 
