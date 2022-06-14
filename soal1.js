@@ -2,18 +2,18 @@ const hariKerja = (day) => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			try {
-				if (typeof day === 'string') {
-					const dataDay = ['senin', 'selasa', 'rabu', 'kamis', 'jumat'];
-					let cek = dataDay.find((item) => {
-						return item === day.toLowerCase();
-					});
-					if (cek) {
-						resolve(cek);
-					} else {
-						reject(new Error('Hari ini bukan hari kerja'));
-					}
-				} else {
+				if (typeof day !== 'string') {
 					reject(new Error('Input must be a string'));
+					return;
+				}
+				const dataDay = ['senin', 'selasa', 'rabu', 'kamis', 'jumat'];
+				let cek = dataDay.find((item) => {
+					return item === day.toLowerCase();
+				});
+				if (cek) {
+					resolve(cek);
+				} else {
+					reject(new Error('Hari ini bukan hari kerja'));
 				}
 			} catch {
 				reject(new Error('Program Error!'));
