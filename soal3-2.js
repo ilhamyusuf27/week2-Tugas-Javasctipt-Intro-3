@@ -3,15 +3,15 @@ const axios = require('axios');
 const searchAnime = (title) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			if (typeof title === 'string') {
-				const request = await axios.get(`https://kitsu.io/api/edge/anime?filter[text]=${title}&page[limit]=1`);
-				if (request?.data?.data?.length) {
-					resolve(request.data.data);
-				} else {
-					reject(new Error('Data not found'));
-				}
-			} else {
+			if (typeof title !== 'string') {
 				reject(new Error('Input must be a string'));
+				return;
+			}
+			const request = await axios.get(`https://kitsu.io/api/edge/anime?filter[text]=${title}&page[limit]=1`);
+			if (request?.data?.data?.length) {
+				resolve(request.data.data);
+			} else {
+				reject(new Error('Data not found'));
 			}
 		} catch (err) {
 			reject(err);
@@ -19,7 +19,7 @@ const searchAnime = (title) => {
 	});
 };
 
-searchAnime('bleach')
+searchAnime('toradora')
 	.then((response) => {
 		response.map((data) => {
 			console.log(`Title: ${data.attributes.canonicalTitle}`);
